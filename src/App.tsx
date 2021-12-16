@@ -1,5 +1,6 @@
 import React from 'react';
+import AppRoutes from './app/AppRoutes';
 
-const App = () => <div>hello world</div>;
+const App = () => <AppRoutes />;
 
 export default App;
