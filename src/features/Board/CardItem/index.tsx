@@ -1,7 +1,7 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 
-import { Card } from '../../../types';
+import { Card } from '../types';
 
 type CardItemProps = {
   cardItem: Card;

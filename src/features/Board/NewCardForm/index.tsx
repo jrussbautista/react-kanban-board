@@ -3,7 +3,7 @@ import { XIcon } from '@heroicons/react/solid';
 import { v4 as uuid } from 'uuid';
 
 import { useBoardDispatch } from '../BoardContext/index';
-import { Card } from '../../../types';
+import { Card } from '../types';
 
 type NewCardFormProps = {
   onClose(): void;

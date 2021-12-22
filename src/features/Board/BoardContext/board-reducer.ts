@@ -1,4 +1,4 @@
-import { Board, Card } from '../../../types';
+import { Board, Card } from '../types';
 
 type AddCardPayload = {
   columnId: string;

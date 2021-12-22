@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid';
 
-import { Board } from '../types';
+import { Board } from './types';
 
 export const board: Board = {
   columns: [

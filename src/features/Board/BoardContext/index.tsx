@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 import { Action, boardReducer } from './board-reducer';
-import { board } from '../../../data';
-import { Board } from '../../../types';
+import { board } from '../data';
+import { Board } from '../types';
 
 const BoardContext = createContext<Board | null>(null);
 const BoardDispatchContext = createContext<React.Dispatch<Action> | null>(null);

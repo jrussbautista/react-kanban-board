@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
 import { PlusIcon } from '@heroicons/react/solid';
 
-import { Column } from '../../../types';
+import { Column } from '../types';
 import CardItem from '../CardItem';
 import NewCardForm from '../NewCardForm/index';
 
