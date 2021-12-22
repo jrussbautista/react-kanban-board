@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Droppable } from 'react-beautiful-dnd';
+import { PlusIcon } from '@heroicons/react/solid';
 
 import { Column } from '../../../types';
 import CardItem from '../CardItem';
+import NewCardForm from '../NewCardForm/index';
 
 type ColumnItemProps = {
   column: Column;
 };
 
 const ColumnItem = ({ column }: ColumnItemProps) => {
+  const [isOpenNewCardForm, setIsOpenNewCardForm] = useState(false);
+
   return (
     <Droppable key={column.id} droppableId={column.id}>
       {(provided) => (
@@ -21,6 +25,19 @@ const ColumnItem = ({ column }: ColumnItemProps) => {
               <CardItem key={card.id} cardItem={card} index={index} />
             ))}
             {provided.placeholder}
+
+            {isOpenNewCardForm ? (
+              <NewCardForm columnId={column.id} onClose={() => setIsOpenNewCardForm(false)} />
+            ) : (
+              <button
+                type="button"
+                onClick={() => setIsOpenNewCardForm(true)}
+                className="flex items-center w-full rounded-md p-4 hover:bg-gray-200"
+              >
+                <PlusIcon className="h-5 w-5 mr-2" />
+                Add a card
+              </button>
+            )}
           </div>
         </>
       )}
