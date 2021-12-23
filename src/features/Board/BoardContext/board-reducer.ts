@@ -1,4 +1,4 @@
-import { Board, Card } from '../types';
+import { Board, Card, Column } from '../types';
 
 type AddCardPayload = {
   columnId: string;
@@ -27,12 +27,22 @@ type AddCard = {
   type: 'ADD_CARD';
 };
 
-export type Action = MoveCard | AddCard;
+type AddColumn = {
+  type: 'ADD_COLUMN';
+  payload: Column;
+};
+
+export type Action = MoveCard | AddCard | AddColumn;
 
 export type State = Board;
 
 export const boardReducer = (state: State, action: Action) => {
   switch (action.type) {
+    case 'ADD_COLUMN': {
+      const { columns } = state;
+      const newColumns = [...columns, action.payload];
+      return { ...state, columns: newColumns };
+    }
     case 'MOVE_CARD': {
       const { columns } = state;
       const { source, destination, draggableId } = action.payload;
