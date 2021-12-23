@@ -5,6 +5,7 @@ import { PlusIcon } from '@heroicons/react/solid';
 import { Column } from '../types';
 import CardItem from '../CardItem';
 import NewCardForm from '../NewCardForm/index';
+import ColumnMenu from '../ColumnMenu/ColumnMenu';
 
 type ColumnItemProps = {
   column: Column;
@@ -17,8 +18,9 @@ const ColumnItem = ({ column }: ColumnItemProps) => {
     <Droppable key={column.id} droppableId={column.id}>
       {(provided) => (
         <>
-          <div className="bg-blue-500 p-3 text-white">
+          <div className="bg-blue-500 p-3 text-white flex justify-between">
             <p className="font-semibold">{column.title}</p>
+            <ColumnMenu />
           </div>
           <div {...provided.droppableProps} ref={provided.innerRef} className="mt-4 h-full">
             {column.cards?.map((card, index) => (
