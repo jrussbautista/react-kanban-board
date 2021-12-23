@@ -22,27 +22,29 @@ const BoardApp = () => {
   };
 
   return (
-    <div className="flex">
-      <DragDropContext onDragEnd={handleDragEnd}>
-        {columns.map((column) => (
-          <div key={column.id} className="flex-1 p-4">
-            <ColumnItem column={column} />
-          </div>
-        ))}
-      </DragDropContext>
-      <div className="flex-1 p-4">
-        {isOpenNewListForm ? (
-          <NewListForm onClose={() => setIsOpenNewListForm(false)} />
-        ) : (
-          <button
-            onClick={() => setIsOpenNewListForm(true)}
-            type="button"
-            className="bg-white border border-blue-500 text-blue-500 w-full p-3 text-left rounded flex items-center"
-          >
-            <PlusIcon className="w-5 h-5" />
-            Add another list
-          </button>
-        )}
+    <div className="relative" style={{ height: 'calc(100vh - 4rem)' }}>
+      <div className="whitespace-nowrap overflow-y-hidden overflow-x-auto h-full">
+        <DragDropContext onDragEnd={handleDragEnd}>
+          {columns.map((column) => (
+            <div key={column.id} className="p-4 w-72 inline-block whitespace-nowrap align-top ">
+              <ColumnItem column={column} />
+            </div>
+          ))}
+        </DragDropContext>
+        <div className="w-72 p-4 inline-block whitespace-nowrap align-top">
+          {isOpenNewListForm ? (
+            <NewListForm onClose={() => setIsOpenNewListForm(false)} />
+          ) : (
+            <button
+              onClick={() => setIsOpenNewListForm(true)}
+              type="button"
+              className="bg-white border border-blue-500 text-blue-500 w-full p-3 text-left rounded flex items-center"
+            >
+              <PlusIcon className="w-5 h-5" />
+              Add another list
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
