@@ -1,8 +1,15 @@
 import React, { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
-import { DotsVerticalIcon } from '@heroicons/react/solid';
+import { DotsVerticalIcon, TrashIcon } from '@heroicons/react/solid';
+import { useBoardDispatch } from '../BoardContext/index';
 
-const ColumnMenu = () => {
+type ColumnMenuProps = {
+  columnId: string;
+};
+
+const ColumnMenu = ({ columnId }: ColumnMenuProps) => {
+  const dispatch = useBoardDispatch();
+
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -24,11 +31,13 @@ const ColumnMenu = () => {
             <Menu.Item>
               {({ active }) => (
                 <button
+                  onClick={() => dispatch({ type: 'REMOVE_COLUMN', payload: { columnId } })}
                   type="button"
                   className={`w-full flex items-center p-2 text-sm
-                  ${active ? 'text-blue-500' : 'text-gray-900'}
+                  ${active ? 'text-blue-500' : 'text-gray-700'}
               `}
                 >
+                  <TrashIcon className="w-5 h-5 mr-2" />
                   Delete
                 </button>
               )}

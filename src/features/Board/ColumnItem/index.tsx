@@ -20,7 +20,7 @@ const ColumnItem = ({ column }: ColumnItemProps) => {
         <>
           <div className="bg-blue-500 p-3 text-white flex justify-between">
             <p className="font-semibold">{column.title}</p>
-            <ColumnMenu />
+            <ColumnMenu columnId={column.id} />
           </div>
           <div {...provided.droppableProps} ref={provided.innerRef} className="mt-4 h-full">
             {column.cards?.map((card, index) => (
