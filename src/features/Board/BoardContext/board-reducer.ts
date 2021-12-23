@@ -21,6 +21,11 @@ type RemoveColumnPayload = {
   columnId: string;
 };
 
+type UpdateColumnPayload = {
+  columnId: string;
+  title: string;
+};
+
 type MoveCard = {
   payload: MovePayload;
   type: 'MOVE_CARD';
@@ -41,7 +46,12 @@ type RemoveColumn = {
   payload: RemoveColumnPayload;
 };
 
-export type Action = MoveCard | AddCard | AddColumn | RemoveColumn;
+type UpdateColumn = {
+  type: 'UPDATE_COLUMN';
+  payload: UpdateColumnPayload;
+};
+
+export type Action = MoveCard | AddCard | AddColumn | RemoveColumn | UpdateColumn;
 
 export type State = Board;
 
@@ -55,6 +65,16 @@ export const boardReducer = (state: State, action: Action) => {
     case 'REMOVE_COLUMN': {
       const { columns } = state;
       const newColumns = columns.filter((column) => column.id !== action.payload.columnId);
+      return { ...state, columns: newColumns };
+    }
+
+    case 'UPDATE_COLUMN': {
+      const { columns } = state;
+      const { title, columnId } = action.payload;
+      const newColumns = columns.map((column) =>
+        column.id === columnId ? { ...column, title } : column
+      );
+
       return { ...state, columns: newColumns };
     }
     case 'MOVE_CARD': {
