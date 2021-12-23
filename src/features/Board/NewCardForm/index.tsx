@@ -34,11 +34,10 @@ const NewCardForm = ({ onClose, columnId }: NewCardFormProps) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <textarea
+      <input
         className="w-full p-4"
         placeholder="Enter title for this card"
-        aria-label="title"
-        rows={2}
+        aria-label="Title"
         onChange={(e) => setCardText(e.target.value)}
         value={cardText}
       />
